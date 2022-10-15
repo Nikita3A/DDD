@@ -1,0 +1,25 @@
+version: "3"
+services:
+  postgres:
+    container_name: hw-node
+    image: postgres:13.4
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: marcus
+      POSTGRES_DATABASE: example
+    ports:
+      - "5432:5432"
+    volumes:
+      - /tmp/postgres:/tmp/postgres
+      - type: bind
+        source: ./setup.sh
+        target: /setup.sh
+      - type: bind
+        source: ./install.sql
+        target: /install.sql
+      - type: bind
+        source: ./structure.sql
+        target: /structure.sql
+      - type: bind
+        source: ./data.sql
+        target: /data.sql
